@@ -33,7 +33,7 @@ namespace HttpClientFactory.API
 
             services.AddSingleton<IApiConfig>(x => x.GetRequiredService<IOptions<ApiConfig>>().Value);
 
-            //Criando a polly com uma configuração de tentativa de 3 vezes esperando 3 segundos para cada tentativa
+            //Criando a polly com uma configuração de tentativa de 3 vezes esperando 3 segundos para cada tentativa.
             var retryPolice = HttpPolicyExtensions.HandleTransientHttpError()
                 .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(retryAttempt));
 
